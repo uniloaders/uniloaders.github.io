@@ -126,9 +126,14 @@ const DEPENDENCIES: &'static [Dependency] = &[
     Dependency::plugin("unreal", ">=0.1"),          // starts first, or this waits
     Dependency::library("openxr_loader.dll"),       // must be findable
     Dependency::file("Content/Paks/pakchunk0.pak"), // must exist
-    Dependency::plugin("overlay", "").optional(),   // only orders the start
+    Dependency::plugin("jump", "").optional(),      // only orders the start
+    Dependency::service("overlay").optional(),      // after whoever provides it
 ];
 ```
+
+A plugin that registers a service names it in `PROVIDES` (`&["overlay"]`), so plugins
+depending on the service start after it. When several plugins provide the same service,
+each one only orders the start, because any of them is enough.
 
 Hooks are owned by the loader: it refuses a second hook on the same address, lists them all
 under `hooks`, and takes them out when the plugin stops, so a stopped plugin leaves no code

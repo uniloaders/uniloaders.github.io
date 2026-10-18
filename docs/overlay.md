@@ -59,8 +59,9 @@ uniloader-overlay = { git = "https://github.com/uniloaders/uniloader" }
 ```rust
 use uniloader_overlay::{Overlay, UiLevel};
 
+// Any plugin providing the service will do: this one, or a game's native UI.
 const DEPENDENCIES: &'static [Dependency] =
-    &[Dependency::plugin(uniloader_overlay::PLUGIN, ">=0.1").optional()];
+    &[Dependency::service(uniloader_overlay::SERVICE).optional()];
 
 // in start:
 if let Some(overlay) = Overlay::connect(&host) {

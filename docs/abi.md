@@ -40,8 +40,15 @@ typedef struct {
     Str title, version, authors, description;
     const Dependency *dependencies;
     size_t dependency_count;
+    const Str *provides;           /* service names this plugin registers; appended, */
+    size_t provides_count;         /* so read them only if struct_size covers them   */
 } PluginInfo;
 ```
+
+A `Dependency` names a plugin (`kind` 0, with a version requirement), a library (1), a file
+(2) or a service (3). A service dependency starts the plugin after every plugin whose
+`provides` lists that service; with no provider at all a mandatory one waits like a missing
+plugin.
 
 `start` may keep `host` for the plugin's lifetime. It fills in the callbacks it wants and
 returns `OK`; any other status means the plugin failed to start.
