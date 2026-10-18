@@ -51,6 +51,9 @@ to the real library and loads the plugins in `plugins/`: native plugins, Lua scr
 
    using the name you picked. Windows needs nothing more.
 
+Or let [RaiPal](docs/raipal.html) do all of this: it installs uniloader and its plugins into
+any game it finds, remembers them, and removes them again.
+
 ## Check that it works
 
 Start the game. uniloader writes a log to `uniloader/logs/` next to the executable. The

@@ -1,0 +1,87 @@
+{
+  "mods": [
+    {
+      "id": "uniloader",
+      "family": "uniloader",
+      "title": "uniloader",
+      "author": "uniloaders",
+      "sourceCode": "https://github.com/uniloaders/uniloader",
+      "description": "Plugin loader for any Windows game: native Rust plugins, Lua scripts and .asi mods. It takes the place of dwmapi.dll, as UE4SS does: install one of the two.",
+      "architecture": "X64",
+      "gameOs": "Windows",
+      "download": {
+        "id": "0.1.0",
+        "url": "https://github.com/uniloaders/uniloader/releases/download/v0.1.0/uniloader-0.1.0-win64.zip"
+      },
+      "install": {
+        "extract": [
+          {
+            "source": "dwmapi.dll",
+            "destination": "{{GameExecutableFolderPath}}/dwmapi.dll"
+          },
+          {
+            "source": "plugins",
+            "destination": "{{GameInstalledModsPath}}/uniloader/plugins"
+          }
+        ],
+        "write": [
+          {
+            "content": "{{MaybeWineRoot}}{{GameInstalledModsPath}}/uniloader",
+            "destination": "{{GameExecutableFolderPath}}/uniloader-root.txt"
+          }
+        ],
+        "wineDllOverrides": ["dwmapi"],
+        "mainInstalledFolderPath": "{{GameInstalledModsPath}}/uniloader",
+        "manifestPath": "{{GameInstalledModsPath}}/manifests/uniloader.json"
+      }
+    },
+    {
+      "id": "uniloader-overlay",
+      "family": "uniloader",
+      "title": "uniloader overlay",
+      "author": "uniloaders",
+      "sourceCode": "https://github.com/uniloaders/uniloader/tree/main/plugins/overlay",
+      "description": "In-game overlay for uniloader: a console, a settings editor for every plugin, and panels plugins draw. Direct3D 11 games (Direct3D 12 and Vulkan not yet).",
+      "architecture": "X64",
+      "gameOs": "Windows",
+      "requiredDependencies": [{ "modId": "uniloader" }],
+      "download": {
+        "id": "0.1.0",
+        "url": "https://github.com/uniloaders/uniloader/releases/download/v0.1.0/uniloader-overlay-0.1.0-win64.zip"
+      },
+      "install": {
+        "extract": [
+          {
+            "source": "overlay.dll",
+            "destination": "{{GameInstalledModsPath}}/uniloader/plugins/overlay.dll"
+          }
+        ],
+        "manifestPath": "{{GameInstalledModsPath}}/manifests/uniloader-overlay.json"
+      }
+    },
+    {
+      "id": "uniloader-lua-bridge",
+      "family": "uniloader",
+      "title": "uniloader Lua bridge",
+      "author": "uniloaders",
+      "sourceCode": "https://github.com/uniloaders/uniloader/tree/main/plugins/lua-bridge",
+      "description": "Lua 5.4 scripting for uniloader: scripts in plugins/lua/ get settings, hotkeys, the console and the log.",
+      "architecture": "X64",
+      "gameOs": "Windows",
+      "requiredDependencies": [{ "modId": "uniloader" }],
+      "download": {
+        "id": "0.1.0",
+        "url": "https://github.com/uniloaders/uniloader/releases/download/v0.1.0/uniloader-lua-bridge-0.1.0-win64.zip"
+      },
+      "install": {
+        "extract": [
+          {
+            "source": "lua_bridge.dll",
+            "destination": "{{GameInstalledModsPath}}/uniloader/plugins/lua_bridge.dll"
+          }
+        ],
+        "manifestPath": "{{GameInstalledModsPath}}/manifests/uniloader-lua-bridge.json"
+      }
+    }
+  ]
+}

@@ -27,6 +27,25 @@ The per-plugin files and `hotkeys.toml` only hold what differs from the defaults
 one resets that plugin. They are plain `key = value` TOML and can be edited while the game is
 closed.
 
+## `uniloader-root.txt`
+
+To keep these folders out of the game's folder, put `uniloader-root.txt` next to the loader
+DLL. Its first line that is neither empty nor a `#` comment names another folder, either
+absolute or relative to the executable's folder. `plugins/`, `config/` and `logs/` then live
+there instead, and only the DLL and this file stay beside the game:
+
+```text
+<game exe dir>/
+  dwmapi.dll
+  uniloader-root.txt          D:\Mods\MyGame\uniloader
+D:\Mods\MyGame\uniloader\
+  plugins\  config\  logs\
+```
+
+Under Proton or Wine the path is a Windows one, for example `Z:\home\me\mods\uniloader`. The
+log's first lines say where the plugins were looked for. [RaiPal](raipal.html) installs
+uniloader this way.
+
 ## `loader.toml`
 
 Every key is optional.

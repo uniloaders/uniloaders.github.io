@@ -7,6 +7,8 @@ title: Docs
 ## Playing with it
 
 - [Install](../) — the main page: which name to give the DLL, where it goes, Proton.
+- [Installing with RaiPal](raipal.html) — the mod manager that installs, lists and removes
+  uniloader and its plugins per game, on Windows and Linux.
 - [Configuration](configuration.html) — `loader.toml`, command line flags, the files the
   loader writes.
 - [Console and hotkeys](console.html) — built-in commands, settings from the console, the
