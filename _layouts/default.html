@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+  <header class="top">
+    <div class="bar">
+      <a class="brand" href="{{ '/' | relative_url }}">uniloader</a>
+      <nav>
+        <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Install</a>
+        <a href="{{ '/docs/' | relative_url }}"{% if page.url contains '/docs/' %} aria-current="page"{% endif %}>Docs</a>
+        <a href="https://github.com/{{ site.repository }}">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    {% if page.url contains '/docs/' and page.url != '/docs/' %}
+    <p class="crumbs"><a href="{{ '/docs/' | relative_url }}">Docs</a> /</p>
+    {% endif %}
+    {{ content }}
+  </main>
+  <footer>
+    <p>uniloader is MIT licensed. Source, issues and releases:
+      <a href="https://github.com/{{ site.repository }}">github.com/{{ site.repository }}</a>.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,16 @@
+title: uniloader
+description: A plugin loader for any Windows game, written in Rust.
+url: https://uniloaders.github.io
+repository: uniloaders/uniloader
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+exclude:
+  - README.md
+  - LICENSE
