@@ -35,12 +35,14 @@ windows, their sizes and opacity are saved to `uniloader/config/overlay-windows.
 | Direct3D 10 | hooked, not drawn |
 | Direct3D 12, native or under vkd3d-proton | drawn, through Direct3D 11 on 12 (verified in Train Sim World 7 under Proton) |
 | OpenGL 3.0 and later | drawn (verified in the Wine smoke test) |
-| Vulkan | not yet |
+| Vulkan | drawn (verified in the Wine smoke test), if the game creates its device after the overlay loaded |
 
 On Direct3D the hook does not depend on the name uniloader was installed under, or on
 whether the game created its swapchain before the overlay loaded. On OpenGL it hooks
 `wglSwapBuffers` once the game has `opengl32.dll` loaded, at start or within its first
-minute. In a game the overlay
+minute. Vulkan is hooked the same way once `vulkan-1.dll` is loaded; the overlay then has to
+see the game create its device and swapchain, which a game that loads uniloader at start
+always does. In a game the overlay
 cannot draw into, it logs why and stays out of the way; nothing else changes.
 
 **VR:** VR games hand their eye images to OpenXR or OpenVR separately from the desktop
